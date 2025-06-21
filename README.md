@@ -2,7 +2,7 @@
 
 This is Proof of concept for ASG standby and maintenance.
 
-# Start by using terraform
+## Start by using terraform
 
 ```bash
 terraform init
