@@ -41,7 +41,7 @@ resource "aws_security_group" "asg_sg" {
 resource "aws_launch_template" "asg_lt" {
   name_prefix   = "asg-template-"
   image_id      = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   key_name      = var.key_name
 
   block_device_mappings {
@@ -67,7 +67,7 @@ resource "aws_launch_template" "asg_lt" {
 }
 
 resource "aws_autoscaling_group" "asg" {
-  desired_capacity    = 0
+  desired_capacity    = 1
   max_size            = 1
   min_size            = 1
   vpc_zone_identifier = [aws_subnet.public.id]

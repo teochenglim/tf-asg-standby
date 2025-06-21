@@ -35,6 +35,11 @@ An error occurred (ValidationError) when calling the EnterStandby operation: Aut
 
 ```bash
 aws autoscaling enter-standby \
+    --instance-ids [instance_id] \
+    --auto-scaling-group-name [asg_id] \
+    --should-decrement-desired-capacity
+
+aws autoscaling enter-standby \
     --instance-ids i-05a27f8278dbb608d \
     --auto-scaling-group-name terraform-20250621044320415900000001 \
     --should-decrement-desired-capacity
@@ -57,6 +62,8 @@ aws autoscaling enter-standby \
 2. Confirmed the state is in Standby before we do anything
 
 ```bash
+aws autoscaling describe-auto-scaling-instances --instance-ids [instance_id]
+
 aws autoscaling describe-auto-scaling-instances --instance-ids i-05a27f8278dbb608d
 {
     "AutoScalingInstances": [
@@ -101,6 +108,10 @@ drwx------ 2 ubuntu ubuntu       4096 Jun 21 04:47 .ssh
 
 ```bash
 aws autoscaling exit-standby \
+    --instance-ids [instance_id] \
+    --auto-scaling-group-name [asg_id]
+
+aws autoscaling exit-standby \
     --instance-ids i-05a27f8278dbb608d \
     --auto-scaling-group-name terraform-20250621044320415900000001
 {
@@ -122,6 +133,8 @@ aws autoscaling exit-standby \
 5. Confirmed the state is in InService
 
 ```bash
+aws autoscaling describe-auto-scaling-instances --instance-ids [isntance_id]
+
 aws autoscaling describe-auto-scaling-instances --instance-ids i-05a27f8278dbb608d
 {
     "AutoScalingInstances": [
