@@ -1,4 +1,4 @@
-# Terraform ASG standby and maintainance repo
+## Terraform ASG standby and maintainance repo
 
 This is Proof of concept for ASG standby and maintenance.
 
@@ -10,14 +10,14 @@ terraform plan
 echo yes | terraform apply
 ```
 
-# ssh to the instance and create a file, assuming you have a public key called "chenglimteo"
+## ssh to the instance and create a file, assuming you have a public key called "chenglimteo"
 
 ```bash
 ssh ubuntu@[public_ip]
 dd if=/dev/zero of=1GB_file bs=1M count=1024
 ```
 
-# "ASG Min" must be less than desired capacity so that we can detach from ASG
+## "ASG Min" must be less than desired capacity so that we can detach from ASG
 
 ```bash
 $ aws autoscaling enter-standby \
@@ -28,7 +28,8 @@ $ aws autoscaling enter-standby \
 An error occurred (ValidationError) when calling the EnterStandby operation: AutoScalingGroup terraform-20250621044320415900000001 has min-size=1, max-size=1, and desired-size=1. To place into standby 1 instance, please update the AutoScalingGroup sizes appropriately.
 ```
 
-# https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enter-exit-standby.html
+## Docs
+> https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enter-exit-standby.html
 
 1. Move out the instance
 
@@ -79,7 +80,7 @@ aws autoscaling describe-auto-scaling-instances --instance-ids i-05a27f8278dbb60
 
 3. Do whatever you want to do (Stopped/Resize/Start)
 
-# ssh to the instance and create a file, assuming you have a public key called "chenglimteo"
+## ssh to the instance and create a file, assuming you have a public key called "chenglimteo"
 
 ```bash
 ssh ubuntu@[public_ip]
@@ -161,7 +162,7 @@ aws autoscaling describe-auto-scaling-instances --instance-ids i-05a27f8278dbb60
 }
 ```
 
-# clean up with terraform
+## clean up with terraform
 
 ```bash
 echo yes | terraform destroy
